@@ -1,5 +1,30 @@
 package model;
 
-public class Classroom {
+import java.util.ArrayList;
+import java.util.List;
 
+import javafx.scene.image.Image;
+
+public class Classroom {
+	
+	private List<UserAccount> userAccounts;
+	
+	public Classroom(){
+		setUserAcounts(new ArrayList<>());
+	}
+
+	public List<UserAccount> getUserAcounts() {
+		return userAccounts;
+	}
+
+	public void setUserAcounts(List<UserAccount> userAcounts) {
+		this.userAccounts = userAcounts;
+	}	
+	
+	public void addUserAccount(String username, String password, Image profileImage,int genderIndex, int careerIndex, String birthday, int browserIndex) {
+	
+		this.userAccounts.add(new UserAccount(username, password, profileImage, genderIndex, careerIndex, birthday, browserIndex));
+	
+	}
+	
 }

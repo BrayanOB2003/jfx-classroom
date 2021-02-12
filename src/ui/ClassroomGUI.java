@@ -102,7 +102,7 @@ public class ClassroomGUI {
     	this.classroom = classroom;
     }
     
-    public void startLogin() throws IOException {
+    public void loadLogin() throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
     	fxmlLoader.setController(this);
     	
