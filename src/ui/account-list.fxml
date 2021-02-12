@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="235.0" layoutY="108.0" text="User account list">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="accountList" layoutX="56.0" layoutY="150.0" prefHeight="315.0" prefWidth="513.0">
+        <columns>
+          <TableColumn fx:id="columUsername" prefWidth="109.0" text="Username" />
+          <TableColumn fx:id="columGender" prefWidth="62.0" text="Gender" />
+            <TableColumn fx:id="columCareer" prefWidth="103.0" text="Career" />
+            <TableColumn fx:id="columBirthday" prefWidth="114.0" text="Birthday" />
+            <TableColumn fx:id="columBrowser" prefWidth="124.0" text="Browser" />
+        </columns>
+      </TableView>
+      <Label fx:id="labelUsername" alignment="CENTER" layoutX="268.0" layoutY="35.0" prefHeight="30.0" prefWidth="135.0" text="Brayan Ortiz" textAlignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgUser" fitHeight="55.0" fitWidth="60.0" layoutX="403.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="474.0" layoutY="31.0" mnemonicParsing="false" onAction="#logOut" prefHeight="38.0" prefWidth="89.0" style="-fx-background-color: DEEPSKYBLUE; -fx-background-radius: 10;" text="Log out" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
