@@ -10,7 +10,7 @@ public class Classroom {
 	private List<UserAccount> userAccounts;
 	
 	public Classroom(){
-		setUserAcounts(new ArrayList<>());
+		setUserAcounts(new ArrayList<UserAccount>());
 	}
 
 	public List<UserAccount> getUserAcounts() {
@@ -21,9 +21,9 @@ public class Classroom {
 		this.userAccounts = userAcounts;
 	}	
 	
-	public void addUserAccount(String username, String password, Image profileImage,int genderIndex, int careerIndex, String birthday, int browserIndex) {
+	public void addUserAccount(String username, String password, Image profileImage,int genderIndex,String career, String birthday, int browserIndex) {
 	
-		this.userAccounts.add(new UserAccount(username, password, profileImage, genderIndex, careerIndex, birthday, browserIndex));
+		this.userAccounts.add(new UserAccount(username, password, profileImage, genderIndex, career, birthday, browserIndex));
 	
 	}
 	

@@ -11,16 +11,16 @@ public class UserAccount {
 	private String birthday;
 	private String favoriteBrowser;
 	
-	public UserAccount(String username, String password, Image profileImage,int genderIndex, int careerIndex, String birthday, int browserIndex) {
+	public UserAccount(String username, String password, Image profileImage,int genderIndex,String career, String birthday, int browserIndex) {
 		this.username = username;
 		this.password = password;
 		this.profileImage = profileImage;
 		this.gender = String.valueOf(Gender.values()[genderIndex]);
-		this.career = String.valueOf(Career.values()[careerIndex]);
+		this.career = career;
 		this.birthday = birthday;
 		this.favoriteBrowser = String.valueOf(Browser.values()[browserIndex]);
 	}
-
+	
 	public String getUsername() {
 		return username;
 	}
@@ -69,11 +69,11 @@ public class UserAccount {
 		this.birthday = birthday;
 	}
 
-	public String getFavoriteBrouser() {
+	public String getFavoriteBrowser() {
 		return favoriteBrowser;
 	}
 
-	public void setFavoriteBrouser(String favoriteBrouser) {
+	public void setFavoriteBrowser(String favoriteBrouser) {
 		this.favoriteBrowser = favoriteBrouser;
 	}
 	
