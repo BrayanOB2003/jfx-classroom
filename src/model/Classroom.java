@@ -3,8 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.image.Image;
-
 public class Classroom {
 	
 	private List<UserAccount> userAccounts;
@@ -21,7 +19,7 @@ public class Classroom {
 		this.userAccounts = userAcounts;
 	}	
 	
-	public void addUserAccount(String username, String password, Image profileImage,int genderIndex,String career, String birthday, int browserIndex) {
+	public void addUserAccount(String username, String password, String profileImage,int genderIndex,String career, String birthday, int browserIndex) {
 	
 		this.userAccounts.add(new UserAccount(username, password, profileImage, genderIndex, career, birthday, browserIndex));
 	

@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -110,7 +111,8 @@ public class ClassroomGUI {
     //Classroom object
     private Classroom classroom;
     
-    private int contImage;
+    @SuppressWarnings("unused")
+	private int contImage;
     
     public ClassroomGUI(Classroom classroom) { //Constructor
     	this.classroom = classroom;
@@ -142,6 +144,8 @@ public class ClassroomGUI {
     @FXML
     void LogIn(ActionEvent event) throws IOException {
     	
+    	boolean logIn = false;
+    	
     	if(classroom.getUserAcounts().size() != 0) {
     		
     		for(int i = 0; i < classroom.getUserAcounts().size(); i++) {
@@ -157,17 +161,21 @@ public class ClassroomGUI {
                 	mainContainer.getChildren().setAll(root);
             		
                 	labelUsername.setText(classroom.getUserAcounts().get(i).getUsername());
-                	imgUser.setImage(classroom.getUserAcounts().get(i).getProfileImage());
+                	imgUser.setImage(new Image(classroom.getUserAcounts().get(i).getProfileImage()));
                 	setInfoTableView();
                 	
-            	} else if(i == classroom.getUserAcounts().size() - 1){
-            		Alert alert = new Alert(AlertType.WARNING);
-            		alert.setTitle("Log In Incorrect");
-            		alert.setHeaderText(null);
-            		alert.setContentText("The username and password given are incorrect");
-            		alert.showAndWait();
+                	logIn = true;
+                	break;
             	}
     		} 	
+    		
+    		if(!logIn) {
+        		Alert alert = new Alert(AlertType.WARNING);
+        		alert.setTitle("Log In Incorrect");
+        		alert.setHeaderText(null);
+        		alert.setContentText("The username and password given are incorrect");
+        		alert.showAndWait();
+        	}
     		
     	} else {
     		
@@ -177,8 +185,9 @@ public class ClassroomGUI {
     		alert.setContentText("There are no accounts created yet");
     		alert.showAndWait();
     		
-    	}
+    	}	
     }
+    
     
     @FXML
     void SignUp(ActionEvent event) throws IOException {
@@ -210,27 +219,31 @@ public class ClassroomGUI {
 		} 	
     }
     
-    public Image copyImage() {
+    public String copyImage() {
     	
-    	Image image = null;
+    	String image = "";
     	
-    	if(!txtFilePhoto.equals("")) {
+    	if(!txtFilePhoto.getText().isEmpty() && txtFilePhoto.getText().contains(".")) {
     		try {
-				Path origin = Paths.get(txtFilePhoto.getText());
-				Path destination = Paths.get("src/images/imgPhotoProfile.png");
+    			String[] prt = txtFilePhoto.getText().split("\\."); 
+				Path origin = Paths.get(txtFilePhoto.getText());				
+				Path destination = Paths.get("images/imgPhotoProfile" + txtCreateUsername.getText() + "." + prt[1]);
+				System.out.print(destination.toAbsolutePath().toString());
 				
 				Files.copy(origin, destination, StandardCopyOption.REPLACE_EXISTING);
 				
-				image = new Image("/images/imgPhotoProfilecheck.png");
+				image = destination.toAbsolutePath().toUri().toString();
 				
 			}catch(IOException e) {
 				
+			}finally {
+				
 			}
-    		
-    		
-		}
+    	}
     	
-    	return image;
+		return image;
+    	
+    	
     }
     
     public int checkGender() {
@@ -244,7 +257,7 @@ public class ClassroomGUI {
     	} else if(checkTelematic.isSelected()) {
     		selected = 2;
     	}
-    	
+    	 
     	return selected;
     }
 
@@ -267,13 +280,13 @@ public class ClassroomGUI {
     	
     	String username = txtCreateUsername.getText();
     	String password = String.valueOf(txtCreatePassword.getCharacters());
-    	Image image = copyImage();
+    	String image = copyImage();
     	int genderIndex = checkGender();
     	String selectCareer = selectCareer();
     	String date = String.valueOf(dateBirthday.getValue());
     	int browserIndex = comboBrowsers.getSelectionModel().getSelectedIndex();
     	
-    	if(!username.equals("") && !password.equals("") && image != null && genderIndex != -1 && !selectCareer.equals("") &&
+    	if(!username.equals("") && !password.equals("") && !image.equals("") && genderIndex != -1 && !selectCareer.equals("") &&
     			!date.equals("") && browserIndex != -1) {
     		
     		txtCreateUsername.setText("");
